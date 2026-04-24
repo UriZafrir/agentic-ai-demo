@@ -11,7 +11,7 @@ CHECK_ENV = \
 build:
 	$(CHECK_ENV)
 	@set -a; \
-	source $(ENV_FILE); \
+	. $(CURDIR)/$(ENV_FILE); \
 	set +a; \
 	echo "🚀 Building images..."; \
 	skaffold build --default-repo="$$IMAGE_REGISTRY" --tag="$$IMAGE_TAG" --push
@@ -19,7 +19,7 @@ build:
 render:
 	$(CHECK_ENV)
 	@set -a; \
-	source $(ENV_FILE); \
+	. $(CURDIR)/$(ENV_FILE); \
 	set +a; \
 	echo "📦 Rendering manifests..."; \
 	skaffold render --default-repo="$$IMAGE_REGISTRY" --tag="$$IMAGE_TAG" | envsubst
@@ -27,7 +27,7 @@ render:
 deploy:
 	$(CHECK_ENV)
 	@set -a; \
-	source $(ENV_FILE); \
+	. $(CURDIR)/$(ENV_FILE); \
 	set +a; \
 	echo "📦 Deploying manifests..."; \
 	skaffold render --default-repo="$$IMAGE_REGISTRY" --tag="$$IMAGE_TAG" | envsubst | kubectl apply -f -
