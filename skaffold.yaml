@@ -6,7 +6,7 @@ build:
   platforms: [ "linux/amd64" ]
 
   local:
-    useBuildkit: false
+    useBuildkit: true
 
   artifacts:
 
